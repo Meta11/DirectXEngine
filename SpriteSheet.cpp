@@ -1,6 +1,6 @@
 #include "SpriteSheet.h"
 
-SpriteSheet::SpriteSheet(wchar_t* filename, Graphics* gfx)
+SpriteSheet::SpriteSheet(const wchar_t* filename, Graphics* gfx)
 {
 	this->gfx = gfx;
 	bmp = nullptr;
@@ -26,7 +26,19 @@ SpriteSheet::SpriteSheet(wchar_t* filename, Graphics* gfx)
 	if (wicFrame) wicFrame->Release();
 	if (wicDecoder) wicDecoder->Release();
 	if (wicFactory) wicFactory->Release();
+
+	spriteWidth = bmp->GetSize().width;
+	spriteHeight = bmp->GetSize().height;
+	spritesAcross = 1;
 }
+
+SpriteSheet::SpriteSheet(const wchar_t* filename, Graphics* gfx, int spriteWidth, int spriteHeight) : SpriteSheet(filename, gfx)
+{
+	this->spriteWidth = spriteWidth;
+	this->spriteHeight = spriteHeight;
+	this->spritesAcross = bmp->GetSize().width / spriteWidth;
+}
+
 SpriteSheet::~SpriteSheet()
 {
 	if (bmp) bmp->Release();
@@ -36,4 +48,17 @@ void SpriteSheet::draw()
 	gfx->getRenderTarget()->DrawBitmap(bmp, D2D1::RectF(0.0f, 0.0f, bmp->GetSize().width, bmp->GetSize().height), 1.0f, 
 		D2D1_BITMAP_INTERPOLATION_MODE::D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
 		D2D1::RectF(0.0f, 0.0f, bmp->GetSize().width, bmp->GetSize().height));
+}
+
+void SpriteSheet::draw(int index, int x, int y)
+{
+	D2D_RECT_F src = D2D1::RectF(
+		(float)((index % spritesAcross) * spriteWidth),
+		(float)((index / spritesAcross) * spriteHeight),
+		(float)((index % spritesAcross) * spriteWidth) + spriteWidth,
+		(float)((index / spritesAcross) * spriteHeight) + spriteHeight);
+
+	D2D_RECT_F dest = D2D1::RectF(x, y, x + spriteWidth, y + spriteHeight);
+
+	gfx->getRenderTarget()->DrawBitmap(bmp, dest, 1.0f,	D2D1_BITMAP_INTERPOLATION_MODE::D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, src);
 }
