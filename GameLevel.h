@@ -1,6 +1,7 @@
 #pragma once
-#include "SpriteSheet.h"
+
 class Graphics;
+class SpriteSheet;
 
 class GameLevel {
 protected:

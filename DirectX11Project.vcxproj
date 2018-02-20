@@ -121,6 +121,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameLevel.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -129,6 +131,8 @@
     <ClCompile Include="WindowMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clock.h" />
+    <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameLevel.h" />
     <ClInclude Include="Graphics.h" />

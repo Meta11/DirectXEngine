@@ -16,7 +16,6 @@ public:
 	ID2D1RenderTarget* getRenderTarget() { return renderTarget; }
 	void beginDraw() { renderTarget->BeginDraw(); }
 	void endDraw() { renderTarget->EndDraw(); }
-
 	void clearScreen(float r, float g, float b);
 	void drawCircle(float x, float y, float radius, float r, float g, float b);
 };

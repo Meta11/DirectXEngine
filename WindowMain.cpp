@@ -42,6 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR cmd, int n
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
+	GameController::initialize();
 	GameController::loadLevel(new Level1());
 
 	//main message loop

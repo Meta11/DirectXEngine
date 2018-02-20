@@ -2,29 +2,55 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="WindowMain.cpp" />
-    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Level1.cpp">
-      <Filter>Levels</Filter>
+      <Filter>Game Levels</Filter>
     </ClCompile>
     <ClCompile Include="GameLevel.cpp">
-      <Filter>Levels</Filter>
+      <Filter>Game Levels</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteSheet.cpp" />
+    <ClCompile Include="Clock.cpp">
+      <Filter>Timing</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClock.cpp">
+      <Filter>Timing</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheet.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graphics.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="Level1.h">
-      <Filter>Levels</Filter>
+      <Filter>Game Levels</Filter>
     </ClInclude>
     <ClInclude Include="GameLevel.h">
-      <Filter>Levels</Filter>
+      <Filter>Game Levels</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteSheet.h" />
+    <ClInclude Include="Clock.h">
+      <Filter>Timing</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClock.h">
+      <Filter>Timing</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteSheet.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Levels">
+    <Filter Include="Timing">
+      <UniqueIdentifier>{1224e1b6-059f-4702-b72b-8f3ba589a11b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{ddbf00f7-fe40-4b95-aa15-a5461ffe0424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Levels">
       <UniqueIdentifier>{35727f34-8425-404f-90cc-46b2060c6d8c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
