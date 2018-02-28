@@ -14,7 +14,7 @@ void GameController::switchLevel(GameLevel* level)
 {
 	loading = true;
 	currentLevel->Unload();
-	//delete currentLevel;
+	delete currentLevel;
 	currentLevel = level;
 	loading = false;
 }

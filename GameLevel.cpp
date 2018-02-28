@@ -1,4 +1,4 @@
 #include "GameLevel.h"
-#include "Graphics.h"
+#include "Renderer.h"
 
-Graphics* GameLevel::gfx;
+Renderer* GameLevel::gfx;

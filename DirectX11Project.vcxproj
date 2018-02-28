@@ -121,23 +121,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameLevel.cpp" />
-    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Level1.cpp" />
+    <ClCompile Include="RendererComponent.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
     <ClCompile Include="WindowMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameLevel.h" />
-    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Level1.h" />
+    <ClInclude Include="RendererComponent.h" />
     <ClInclude Include="SpriteSheet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Math.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

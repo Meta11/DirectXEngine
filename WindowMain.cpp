@@ -1,5 +1,6 @@
 #include <Windows.h>
-#include "Graphics.h"
+#include "GameClock.h"
+#include "Renderer.h"
 #include "GameController.h"
 #include "Level1.h"
 
@@ -7,7 +8,7 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
-Graphics* graphics;
+Renderer* graphics;
 
 //forward declarations
 LRESULT WINAPI WinProc(HWND, UINT, WPARAM, LPARAM);
@@ -29,7 +30,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR cmd, int n
 	if (!hWnd)
 		return -1;
 
-	graphics = new Graphics();
+	graphics = new Renderer();
+	if (!gameClock.initialize())
+		return -1;
 
 	if (!graphics->initialize(hWnd))
 	{
@@ -74,6 +77,7 @@ LRESULT WINAPI WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		//direct3D.Game_End(hWnd);
 		//graphics->shutdown();
 		delete graphics;
+		gameClock.shutdown();
 		PostQuitMessage(0);
 		return 0;
 	}

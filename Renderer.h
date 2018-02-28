@@ -1,14 +1,16 @@
 #pragma once
 #include <d2d1.h>
 
-class Graphics 
+class GameLevel;
+
+class Renderer 
 {
 	ID2D1Factory* factory;
 	ID2D1HwndRenderTarget* renderTarget; //the window sreen where graphics are being drawn.
 	ID2D1SolidColorBrush* brush;
 public:
-	Graphics();
-	~Graphics();
+	Renderer();
+	~Renderer();
 
 	bool initialize(HWND hwnd);
 	bool shutdown();
@@ -17,5 +19,4 @@ public:
 	void beginDraw() { renderTarget->BeginDraw(); }
 	void endDraw() { renderTarget->EndDraw(); }
 	void clearScreen(float r, float g, float b);
-	void drawCircle(float x, float y, float radius, float r, float g, float b);
 };

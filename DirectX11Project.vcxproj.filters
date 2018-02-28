@@ -15,11 +15,26 @@
     <ClCompile Include="GameClock.cpp">
       <Filter>Timing</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteSheet.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="RendererComponent.cpp">
+      <Filter>Entities\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Entities\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Entities\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Entities\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,11 +51,29 @@
     <ClInclude Include="GameClock.h">
       <Filter>Timing</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteSheet.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererComponent.h">
+      <Filter>Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Entities\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,5 +86,19 @@
     <Filter Include="Game Levels">
       <UniqueIdentifier>{35727f34-8425-404f-90cc-46b2060c6d8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{cf3e2173-df51-4035-8dc8-52cce09a626b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Components">
+      <UniqueIdentifier>{d0450f63-6cd0-4118-a533-f652f6a3b86c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{e308b18b-790e-4933-a405-f228e17a8f9b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Math.inl">
+      <Filter>Math</Filter>
+    </None>
   </ItemGroup>
 </Project>

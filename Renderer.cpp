@@ -1,13 +1,14 @@
-#include "Graphics.h"
+#include "Renderer.h"
+#include "GameLevel.h"
 
-Graphics::Graphics()
+Renderer::Renderer()
 {
 	factory = nullptr;
 	renderTarget = nullptr;
 	brush = nullptr;
 }
 
-Graphics::~Graphics()
+Renderer::~Renderer()
 {
 	if (renderTarget != nullptr)
 		renderTarget->Release();
@@ -15,7 +16,7 @@ Graphics::~Graphics()
 		factory->Release();
 }
 
-bool Graphics::initialize(HWND hwnd)
+bool Renderer::initialize(HWND hwnd)
 {
 	//create factory allows to create several things, such as the renderTarget
 	HRESULT res = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
@@ -35,7 +36,7 @@ bool Graphics::initialize(HWND hwnd)
 	return true;
 }
 
-bool Graphics::shutdown()
+bool Renderer::shutdown()
 {
 	if (renderTarget != nullptr)
 		renderTarget->Release();
@@ -44,16 +45,7 @@ bool Graphics::shutdown()
 	return true;
 }
 
-void Graphics::clearScreen(float r, float g, float b)
+void Renderer::clearScreen(float r, float g, float b)
 {
 	renderTarget->Clear(D2D1::ColorF(r, g, b));
-}
-
-void Graphics::drawCircle(float x, float y, float radius, float r, float g, float b)
-{
-	renderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, 1.0f), &brush);
-
-	renderTarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius), brush, 3.0f);
-
-	brush->Release();
 }

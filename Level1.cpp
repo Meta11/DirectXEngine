@@ -1,35 +1,77 @@
 #include "Level1.h"
-#include "SpriteSheet.h"
-#include "Graphics.h"
+#include "Entity.h"
+#include "Renderer.h"
 
 void Level1::Load()
 {
-	y = 0.0f;
-	ySpeed = 0.0f;
-	sprite1 = new SpriteSheet(L"prueba.png", gfx, 64, 64);
 	frame = 0;
+	SpriteSheet* enemyGraphics = new SpriteSheet(L"prueba.png", gfx, 64, 64);
+
+	for (int i = 0; i < 6; i++)
+	{
+		enemyEntity = new Entity();
+		//PhysicsComponent
+		enemyEntity->addComponent(new PhysicsComponent());
+		enemyEntity->getComponent<PhysicsComponent>()->setAcceleration(0, i*3.0f);
+		//GraphicsComponent
+		enemyEntity->setPosition(i*64, i*64);
+		enemyEntity->addComponent(new RendererComponent());
+		enemyEntity->getComponent<RendererComponent>()->setGraphics(enemyGraphics);
+		//AnimationComponent
+		enemyEntity->addComponent(new AnimationComponent());
+		enemyEntity->getComponent<AnimationComponent>()->setFramesData(4);
+		enemyEntity->initialize();
+		entities.push_back(enemyEntity);
+	}
+
+	//GraphicsComponent
+	playerEntity.setPosition(350, 200);
+	playerGraphics = new SpriteSheet(L"Reimu.png", gfx, 32, 48);
+	playerRenderer.setGraphics(playerGraphics);
+	playerEntity.addComponent(&playerRenderer);
+	//PhysicsComponent
+	playerEntity.addComponent(&playerPhysicsComponent);
+	//AnimationComponent
+	playerAnimationComponent.setFramesData(8);
+	playerEntity.addComponent(&playerAnimationComponent);
+	playerEntity.initialize();
+	entities.push_back(&playerEntity);
+
 }
 void Level1::Unload()
 {
-	delete sprite1;
+	for (auto& ent : entities)
+	{
+		delete ent;
+	}
 }
 void Level1::Update()
 {
-	ySpeed += 0.3f;
-	y += ySpeed;
-	xSpeed += 0.3f;
-	x += ySpeed;
+	gameClock.newFrame();
+	std::list<Entity*>::iterator it; 
+	it = entities.begin();
 
-	if (y > 550)
+	for (auto& ent : entities)
 	{
-		y = 550.0f;
-		ySpeed = -15.0f;
+		if (ent->destroy)
+		{
+			entities.erase(it);
+		}
+		else
+		{
+			ent->update();
+			it++;
+		}
 	}
-	frame++;
 }
 void Level1::Render()
 {
 	gfx->clearScreen(0.0f, 0.0f, 0.0f);
-	gfx->drawCircle(400.0f, y, 50.0f, 1.0f, 1.0f, 0.0f);
-	sprite1->draw((frame / 15) % 4, 368, y - 32);
+	for (auto& entity : entities)
+	{
+		entity->getComponent<RendererComponent>()->
+			renderEntity(entity->position, (frame) / entity->getComponent<AnimationComponent>()->animationSpeed %
+				entity->getComponent<AnimationComponent>()->numFrames, entity->getComponent<AnimationComponent>()->animationRow);
+	}
+	frame++;
 }
