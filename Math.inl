@@ -53,6 +53,11 @@ Vector3D Vector3D::projectOnto(const Vector3D& target) const
 	return (this->dot(target) / target.magnitudeSquared()) *target;
 }
 
+Vector3D Vector3D::rotate(float angle)
+{
+	return Vector3D(x * cos(angle) - y * sin(angle), x*sin(angle) + y * cos(angle));
+}
+
 Vector3D operator+(const Vector3D &left, const Vector3D &right)
 {
 	return Vector3D(left.x + right.x, left.y + right.y, left.z + right.z);

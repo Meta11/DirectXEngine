@@ -5,8 +5,29 @@
 void Level1::Load()
 {
 	frame = 0;
-	SpriteSheet* enemyGraphics = new SpriteSheet(L"prueba.png", gfx, 64, 64);
+	backgroundGraphics = new SpriteSheet(L"stage1.png", gfx, 512, 512);
+	playerGraphics = new SpriteSheet(L"Reimu.png", gfx, 32, 48);
+	enemyGraphics = new SpriteSheet(L"Enemies.png", gfx, 64, 64);
 
+	//Background
+	backgroundEntity.setPosition(200, 50);
+	backgroundRenderer.setGraphics(backgroundGraphics);
+	backgroundEntity.addComponent(&backgroundRenderer);
+	backgroundEntity.initialize();
+
+	//Player GraphicsComponent
+	playerEntity.setPosition(350, 200);
+	playerRenderer.setGraphics(playerGraphics);
+	playerEntity.addComponent(&playerRenderer);
+	//Player PhysicsComponent
+	playerEntity.addComponent(&playerPhysicsComponent);
+	//Player AnimationComponent
+	playerAnimationComponent.setFramesData(8);
+	playerEntity.addComponent(&playerAnimationComponent);
+	//Player LivingComponent
+	playerEntity.initialize();
+	entities.push_back(&playerEntity);
+	
 	for (int i = 0; i < 6; i++)
 	{
 		enemyEntity = new Entity();
@@ -20,53 +41,46 @@ void Level1::Load()
 		//AnimationComponent
 		enemyEntity->addComponent(new AnimationComponent());
 		enemyEntity->getComponent<AnimationComponent>()->setFramesData(4);
+		//Player LivingComponent
+		enemyEntity->addComponent(new LivingComponent());
+		enemyEntity->getComponent<LivingComponent>()->setTimer(10.0f);
 		enemyEntity->initialize();
 		entities.push_back(enemyEntity);
 	}
-
-	//GraphicsComponent
-	playerEntity.setPosition(350, 200);
-	playerGraphics = new SpriteSheet(L"Reimu.png", gfx, 32, 48);
-	playerRenderer.setGraphics(playerGraphics);
-	playerEntity.addComponent(&playerRenderer);
-	//PhysicsComponent
-	playerEntity.addComponent(&playerPhysicsComponent);
-	//AnimationComponent
-	playerAnimationComponent.setFramesData(8);
-	playerEntity.addComponent(&playerAnimationComponent);
-	playerEntity.initialize();
-	entities.push_back(&playerEntity);
 
 }
 void Level1::Unload()
 {
 	for (auto& ent : entities)
-	{
-		delete ent;
-	}
+		ent->shutdown();
+
+	entities.clear();
 }
 void Level1::Update()
 {
 	gameClock.newFrame();
-	std::list<Entity*>::iterator it; 
-	it = entities.begin();
+	std::list<Entity*>::iterator it = entities.begin(); 
 
-	for (auto& ent : entities)
+	while(it != entities.end())
 	{
-		if (ent->destroy)
+		if ((*it)->destroy)
 		{
-			entities.erase(it);
+			(*it)->shutdown();
+			entities.erase(it++);
 		}
 		else
 		{
-			ent->update();
-			it++;
+			(*it)->update();
+			++it;
 		}
 	}
 }
 void Level1::Render()
 {
 	gfx->clearScreen(0.0f, 0.0f, 0.0f);
+
+	backgroundEntity.getComponent<RendererComponent>()->renderEntity(backgroundEntity.position, 0, 0);
+
 	for (auto& entity : entities)
 	{
 		entity->getComponent<RendererComponent>()->

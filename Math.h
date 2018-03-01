@@ -14,6 +14,7 @@ struct Vector3D {
 	inline Vector3D perpCw() const;
 	inline Vector3D perpCcw() const;
 	inline Vector3D projectOnto(const Vector3D& target) const;
+	inline Vector3D rotate(float angle);
 };
 
 inline Vector3D operator+(const Vector3D &left, const Vector3D &right);

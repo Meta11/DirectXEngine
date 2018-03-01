@@ -5,13 +5,19 @@
 void PhysicsComponent::update()
 {
 	velocity += acceleration * gameClock.dt();
-	//acceleration = Vector3D(0, 0);
 	getParent()->position += velocity * gameClock.dt();
 }
 
 void PhysicsComponent::setAcceleration(float x, float y)
 {
-	getParent()->getComponent<PhysicsComponent>()->acceleration.x = x;
-	getParent()->getComponent<PhysicsComponent>()->acceleration.y = y;
-	getParent()->getComponent<PhysicsComponent>()->acceleration.z = 0; 
+	acceleration.x = x;
+	acceleration.y = y;
+	acceleration.z = 0; 
+}
+
+void PhysicsComponent::setVelocity(float x, float y)
+{
+	velocity.x = x;
+	velocity.y = y;
+	velocity.z = 0;
 }

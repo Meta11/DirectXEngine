@@ -7,7 +7,6 @@ class Entity {
 	static const int NUM_MAX_COMPONENTS = 5;
 	Component* components[NUM_MAX_COMPONENTS];
 	int numComponents;
-	float timer;
 public:
 	Entity();
 	Vector3D position;

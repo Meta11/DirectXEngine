@@ -9,4 +9,5 @@ public:
 	Vector3D acceleration;
 	void update();
 	void setAcceleration(float x, float y);
+	void setVelocity(float x, float y);
 };

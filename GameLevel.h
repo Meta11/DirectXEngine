@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "RendererComponent.h"
 #include "AnimationComponent.h"
+#include "LivingComponent.h"
 #include "SpriteSheet.h"
 #include <list>
 #include "Entity.h"
@@ -15,12 +16,16 @@ class GameLevel {
 protected:
 	static Renderer* gfx;
 	std::list<Entity*> entities;
+	Entity backgroundEntity;
 	Entity playerEntity;
 	Entity* enemyEntity;
+	SpriteSheet* backgroundGraphics;
+	SpriteSheet* playerGraphics;
+	SpriteSheet* enemyGraphics;
 	PhysicsComponent playerPhysicsComponent;
+	RendererComponent backgroundRenderer;
 	RendererComponent playerRenderer;
 	AnimationComponent playerAnimationComponent;
-	SpriteSheet* playerGraphics;
 
 public:
 	static void initialize(Renderer* graphics) { gfx = graphics; }
