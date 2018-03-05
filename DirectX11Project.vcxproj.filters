@@ -39,6 +39,15 @@
     <ClCompile Include="LivingComponent.cpp">
       <Filter>Entities\Components</Filter>
     </ClCompile>
+    <ClCompile Include="KeyInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MyKeyMapper.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerComponent.cpp">
+      <Filter>Entities\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameController.h" />
@@ -81,6 +90,24 @@
     <ClInclude Include="LivingComponent.h">
       <Filter>Entities\Components</Filter>
     </ClInclude>
+    <ClInclude Include="IKeyMapper.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMenuChoice.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MyKeyMapper.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeDefs.h">
+      <Filter>TypeDefs</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerComponent.h">
+      <Filter>Entities\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Timing">
@@ -100,6 +127,12 @@
     </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{e308b18b-790e-4933-a405-f228e17a8f9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{01d46762-3418-4136-81ef-700137bb479b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TypeDefs">
+      <UniqueIdentifier>{20effd9f-f2a0-4202-b672-b24a765067c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

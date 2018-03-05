@@ -1,4 +1,6 @@
 #include "SpriteSheet.h"
+#include "RendererComponent.h"
+#include "GameClock.h"
 
 SpriteSheet::SpriteSheet(const wchar_t* filename, Renderer* gfx)
 {
@@ -50,7 +52,7 @@ void SpriteSheet::draw()
 		D2D1::RectF(0.0f, 0.0f, bmp->GetSize().width, bmp->GetSize().height));
 }
 
-void SpriteSheet::draw(Vector3D position, int index, int row)
+void SpriteSheet::draw(Vector3D position, float angle, int index, int row)
 {
 	D2D_RECT_F src = D2D1::RectF(
 		(float)((index % spritesAcross) * spriteWidth),
@@ -59,6 +61,6 @@ void SpriteSheet::draw(Vector3D position, int index, int row)
 		(float)((index / spritesAcross + row) * spriteHeight) + spriteHeight);
 
 	D2D_RECT_F dest = D2D1::RectF(position.x, position.y, position.x + spriteWidth, position.y + spriteHeight);
-
+	gfx->getRenderTarget()->SetTransform(D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(position.x + spriteWidth / 2, position.y + spriteHeight / 2)));
 	gfx->getRenderTarget()->DrawBitmap(bmp, dest, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE::D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, src);
 }

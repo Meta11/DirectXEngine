@@ -5,12 +5,13 @@
 void Level1::Load()
 {
 	frame = 0;
+
 	backgroundGraphics = new SpriteSheet(L"stage1.png", gfx, 512, 512);
 	playerGraphics = new SpriteSheet(L"Reimu.png", gfx, 32, 48);
 	enemyGraphics = new SpriteSheet(L"Enemies.png", gfx, 64, 64);
 
 	//Background
-	backgroundEntity.setPosition(200, 50);
+	backgroundEntity.setPosition(50, 50);
 	backgroundRenderer.setGraphics(backgroundGraphics);
 	backgroundEntity.addComponent(&backgroundRenderer);
 	backgroundEntity.initialize();
@@ -21,6 +22,8 @@ void Level1::Load()
 	playerEntity.addComponent(&playerRenderer);
 	//Player PhysicsComponent
 	playerEntity.addComponent(&playerPhysicsComponent);
+	//Player ControllerComponent
+	playerEntity.addComponent(&playerControllerComponent);
 	//Player AnimationComponent
 	playerAnimationComponent.setFramesData(8);
 	playerEntity.addComponent(&playerAnimationComponent);
@@ -34,6 +37,7 @@ void Level1::Load()
 		//PhysicsComponent
 		enemyEntity->addComponent(new PhysicsComponent());
 		enemyEntity->getComponent<PhysicsComponent>()->setAcceleration(0, i*3.0f);
+		enemyEntity->getComponent<PhysicsComponent>()->setAngularVelocity(360.0f);
 		//GraphicsComponent
 		enemyEntity->setPosition(i*64, i*64);
 		enemyEntity->addComponent(new RendererComponent());
@@ -79,12 +83,12 @@ void Level1::Render()
 {
 	gfx->clearScreen(0.0f, 0.0f, 0.0f);
 
-	backgroundEntity.getComponent<RendererComponent>()->renderEntity(backgroundEntity.position, 0, 0);
+	backgroundEntity.getComponent<RendererComponent>()->renderEntity(backgroundEntity.position, 0, 0, 0);
 
 	for (auto& entity : entities)
 	{
 		entity->getComponent<RendererComponent>()->
-			renderEntity(entity->position, (frame) / entity->getComponent<AnimationComponent>()->animationSpeed %
+			renderEntity(entity->position, entity->orientation, (frame) / entity->getComponent<AnimationComponent>()->animationSpeed %
 				entity->getComponent<AnimationComponent>()->numFrames, entity->getComponent<AnimationComponent>()->animationRow);
 	}
 	frame++;

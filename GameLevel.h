@@ -1,6 +1,7 @@
 #pragma once
-#include "PhysicsComponent.h"
 #include "Renderer.h"
+#include "PhysicsComponent.h"
+#include "ControllerComponent.h"
 #include "RendererComponent.h"
 #include "AnimationComponent.h"
 #include "LivingComponent.h"
@@ -26,6 +27,7 @@ protected:
 	RendererComponent backgroundRenderer;
 	RendererComponent playerRenderer;
 	AnimationComponent playerAnimationComponent;
+	ControllerComponent playerControllerComponent;
 
 public:
 	static void initialize(Renderer* graphics) { gfx = graphics; }

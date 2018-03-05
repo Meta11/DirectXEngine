@@ -10,6 +10,7 @@ class Entity {
 public:
 	Entity();
 	Vector3D position;
+	float orientation;
 	bool destroy;
 	bool initialize();
 	bool shutdown();

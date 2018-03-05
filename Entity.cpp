@@ -4,6 +4,7 @@
 Entity::Entity()
 {
 	numComponents = 0;
+	orientation = 0;
 }
 
 void Entity::setPosition(float x, float y)

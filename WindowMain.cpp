@@ -3,6 +3,9 @@
 #include "Renderer.h"
 #include "GameController.h"
 #include "Level1.h"
+#include "MyKeyMapper.h"
+#include "KeyInput.h"
+#include "MyMenuChoice.h"
 
 #define APPTITLE "Direct3D_Windowed"
 #define SCREEN_WIDTH 800
@@ -45,6 +48,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR cmd, int n
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
+
+	MyKeyMapper myKeyMapper;
+	if (!input.initialize(&myKeyMapper, 2048))
+		return -1;
+	
 	GameController::initialize();
 	GameController::loadLevel(new Level1());
 
@@ -60,11 +68,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR cmd, int n
 			DispatchMessage(&msg);
 		}
 		else {
+			input.update();
 			GameController::update();
 			graphics->beginDraw();
 			GameController::render();
 			graphics->endDraw();
-
 		}
 	}
 	return msg.wParam;
@@ -76,6 +84,7 @@ LRESULT WINAPI WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	case WM_DESTROY:
 		//direct3D.Game_End(hWnd);
 		//graphics->shutdown();
+		input.shutdown();
 		delete graphics;
 		gameClock.shutdown();
 		PostQuitMessage(0);

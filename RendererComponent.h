@@ -10,6 +10,6 @@ class RendererComponent : public Component {
 	Entity* parent;
 
 public:
-	void renderEntity(Vector3D position, int frame, int row);
+	void renderEntity(Vector3D position, float angle, int frame, int row);
 	void setGraphics(SpriteSheet* graphics);
 };
